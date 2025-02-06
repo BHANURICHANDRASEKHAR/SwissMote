@@ -1,0 +1,26 @@
+
+.webname{
+  font-size: 2rem;
+  font-weight: bold;
+  letter-spacing: 4px;
+  text-transform: capitalize !important;
+  background: linear-gradient(to right, #e832b1, hsl(210, 77%, 37%),rgba(0, 0, 0, 0.751));
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+a{
+  text-decoration: none !important;
+  color: black !important;
+}
+.active{
+  color: blue !important;
+}
+@media screen and (max-width: 768px){
+  .navitem{
+    width: 100% !important;
+    display: block !important;
+    text-align: center;
+  }
+}
