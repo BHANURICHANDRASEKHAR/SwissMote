@@ -6,13 +6,15 @@ import EventCard from '../DashBoard/EventCard'
 import LoaderComponent from '../Loader';
 export default function AdminEvents({SetEventData,SetEdit}) {
     const [Loader, SetLoader] = useState(false);
-    const { Events_Data, SetEvents_Data } = useContext(UserContext);
+    const { Events_Data,UserId, SetEvents_Data } = useContext(UserContext);
     useEffect(() => {
      if(Events_Data.length==0)
      {
       Get_Data(SetLoader,SetEvents_Data)
      }
     },[])
+    const Data=Events_Data.filter(val=>val.UserId==UserId)
+    console.log(Data);
     if(Loader)
     {
         return <LoaderComponent />
@@ -21,12 +23,12 @@ export default function AdminEvents({SetEventData,SetEdit}) {
   return (
     <div className='row'>
     <h4 className='mt-3 text-center' style={{fontFamily:'cursive'}}>Admin Events</h4>
-                    {Events_Data.map((event, i) => (
+                    {Data.map((event, i) => (
                         <React.Fragment>
                         <EventCard key={i} event={event} EditFun={SetEventData} index={i} SetEdit={SetEdit} />
                         </React.Fragment>
                     ))}
-                    {Events_Data.length === 0 && <NoData />}
+                    {Data.length === 0 && <NoData />}
     </div>
   )
 }

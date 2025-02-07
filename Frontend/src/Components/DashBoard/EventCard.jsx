@@ -7,7 +7,7 @@ export default function EventCard({ event,EditFun,SetEdit,index }) {
   const eventStartDate = dayjs(event.Event_StartDate);
   const eventEndDate = dayjs(event.Event_EndDate); 
   const currentDate = dayjs();
-const {UserId} =useContext(UserContext)
+  const {UserId} =useContext(UserContext)
   let status = "UpComing"; 
 
   if (event.status === "Cancelled") {
@@ -33,8 +33,11 @@ const {UserId} =useContext(UserContext)
              (  status == "OnGoing" ) ? (
               <React.Fragment>
               <p className="text-muted">
+                
                 Remaining: {eventEndDate.diff(currentDate, "days")} days, {eventEndDate.diff(currentDate, "hours") % 24} hours
               </p>
+              <p className='mt-3'><b>Attendance:{event.Attendance.length}</b></p>
+
               <NavLink to={`/dashboard/${event._id+index}`} className="rounded-pill btn btn-primary w-100 text-white">Join</NavLink>
               </React.Fragment>
             ):  ( <button  className={`rounded rounded-pill text-white  ${status === "OnGoing" ? "bg-success" : status === "Completed" ? "bg-secondary" : status === "Cancelled" ? "bg-danger" : "bg-primary"} w-100 p-2`}>

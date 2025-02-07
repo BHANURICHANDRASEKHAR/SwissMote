@@ -14,7 +14,7 @@ import nodemailer from 'nodemailer';
         });
 
         let mailOptions = {
-            from: `"DegreeFYD" <${process.env.email}>`, // Sender address
+            from: `"SwissMote" <${process.env.email}>`, // Sender address
             to: to, 
             subject: subject, 
             html: htmlContent,

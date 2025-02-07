@@ -11,11 +11,12 @@ export default function Context({children}) {
     useEffect(()=>{
      async function get()
      {
-      const token=getToken();
+      const token=await getToken();
       if(token){
-       const decoded=await jwtDecode(token);
-       setUserId(decoded.id);
        setUser(token);
+       const decoded=jwtDecode(token);
+       setUserId(decoded.id);
+       
       }
      }
      get();

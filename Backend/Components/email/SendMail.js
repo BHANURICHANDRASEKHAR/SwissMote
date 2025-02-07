@@ -20,7 +20,7 @@ router.post("/forgotPassword", async (req, res) => {
                 <head>
                     <meta charset="UTF-8">
                     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                    <title>OTP Card - DegreeFYD</title>
+                    <title>OTP Card - SwissMote</title>
                     <style>
                        body {
             font-family: 'Arial', sans-serif;
@@ -122,7 +122,7 @@ router.post("/forgotPassword", async (req, res) => {
                         <h2>Your OTP Code</h2>
                         <p>Enter the OTP code below to verify your account:</p>
                         <div class="otp">${otp}</div>
-                        <p>If you need assistance, contact our support team at <a href="mailto:support@DegreeFYD.com">support@DegreeFYD.com</a>.</p>
+                        <p>If you need assistance, contact our support team at <a href="mailto:support@SwissMote.com">support@SwissMote.com</a>.</p>
                     </div>
                 </body>
                 </html>

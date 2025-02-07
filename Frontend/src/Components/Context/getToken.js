@@ -1,8 +1,9 @@
 import Cookie from 'js-cookie'
    
-export default function getCookie()
+export default async function getCookie()
 {
-    return Cookie.get('user-token') || null;  
+    const token=await Cookie.get('user-token') || null;  
+    return token;
 }
 export function RemoveToken()
 {

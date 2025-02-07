@@ -3,7 +3,7 @@ const Htmldata=`<!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OTP Card - DegreeFYD</title>
+    <title>OTP Card - SwissMote</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -103,14 +103,14 @@ const Htmldata=`<!DOCTYPE html>
 <body>
     <div class="card">
         <div class="header">
-            <img src="logo-placeholder.png" alt="DegreeFYD Logo">
+            <img src="logo-placeholder.png" alt="SwissMote Logo">
         </div>
         <h2>Your OTP Code</h2>
         <p>Enter the OTP code below to verify your account:</p>
         <div class="otp">${otp}</div>
         <div class="extra-content">
-            <p>Welcome to DegreeFYD!</p>
-            <p>If you need assistance, contact our support team <a href="mailto:support@DegreeFYD.com" class="contact-link">here</a>.</p>
+            <p>Welcome to SwissMote!</p>
+            <p>If you need assistance, contact our support team <a href="mailto:support@SwissMote.com" class="contact-link">here</a>.</p>
         </div>
         <div class="footer">
             <a href="#" class="button">Resend OTP</a>
