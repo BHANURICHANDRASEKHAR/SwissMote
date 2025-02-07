@@ -7,7 +7,11 @@ import Email from './Components/email/SendMail.js'
 import UpdatePassword from './Components/UpdatePassword.js';
 import DatabaseConnection from './DabaseConnection.js';
 import Events from './Components/Events.js'
+import http from 'http'
+import Server from 'socket.io'
 const app = express();
+const server = http.createServer(app);
+const io = new Server(server, { cors: { origin: '*' } });
 configDotenv();
 DatabaseConnection()
 app.use(express.json())
@@ -24,6 +28,7 @@ app.use(Login)
 app.use(Signup)
 app.use(Email)
 app.use(UpdatePassword)
+
 app.use('/event',Events)
 app.listen(4000,()=>{
     console.log('Server is running on port 4000')  

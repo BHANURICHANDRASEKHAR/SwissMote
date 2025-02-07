@@ -1,17 +1,16 @@
 import React,{useState,useEffect, useContext} from 'react'
 import Input from '../Login/Input';
 import { UserContext } from '../Context/Context';
-import Submit from './SubmitEvent'
+import Submit,{Update} from './SubmitEvent'
 export const data={Event_Name:'',
     Event_Description:'',
     Event_StartDate:'',
     Event_EndDate:'',
     Event_Image:''
 }
-export default function EventFields() {
+ function EventFields({EventData,SetEventData,Edit,SetEdit}) {
  
     const [loading, setLoading] = useState(false);
-    const [EventData,SetEventData]=useState(data)
    
     const {user,Events_Data,SetEvents_Data} = useContext(UserContext)
     function onHandler(e)
@@ -26,8 +25,17 @@ export default function EventFields() {
         })
     }
     function submitEvent(e){
-        e.preventDefault();
-        Submit(setLoading,SetEvents_Data,EventData,SetEventData,user)
+      e.preventDefault();
+      console.log('Submit event',Edit)
+        if(Edit)
+        {
+        
+          Update(setLoading,SetEvents_Data,Events_Data,EventData,SetEventData,SetEdit)
+        }
+        else{
+          Submit(setLoading,SetEvents_Data,EventData,SetEventData,user)
+
+        }
     }
   return (
     <div className="Auth-form-container mt-lg-5">
@@ -43,10 +51,11 @@ export default function EventFields() {
     value={EventData.Event_StartDate}
     min={new Date().toISOString().slice(0, 16)} 
     onChange={(e) =>
-      SetEventData({
+      {SetEventData({
         ...EventData,
         [e.target.name]: e.target.value, 
       })
+      console.log(e.target.value)}
     }
     className="w-100 h-25 form-control"
   />  
@@ -80,7 +89,7 @@ export default function EventFields() {
       </div>  
       <div className="d-grid gap-2 mt-3">
         <button type="submit" className="btn btn-primary" disabled={loading} onClick={submitEvent}>
-        {loading ? '...Loading' : 'Submit'}
+        {loading ? '...Loading' : (Edit ? "Update":'Submit')}
         </button>
       </div>
     </div>
@@ -88,6 +97,7 @@ export default function EventFields() {
 </div>
   )
 }
+export default React.memo(EventFields)
 {/** <Input lable='Confirm Password' placeholder='Password' type='password' handler={onHandler} value={data.confirmPassword} name='confirmPassword'/>
       <div className="d-grid gap-2 mt-3">
         <button type="submit" className="btn btn-primary" disabled={loading} onClick={()=>signup(data,setloading,changeAuthMode,SetShow)}>

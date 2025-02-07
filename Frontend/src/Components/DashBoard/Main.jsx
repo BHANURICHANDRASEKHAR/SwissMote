@@ -32,7 +32,7 @@ export default function Main() {
             <div className='row'>
                 {Events_Data.map((event, i) => (
                     
-                    <EventCard key={i} event={event} />
+                    <EventCard key={i} index={i} event={event} />
                 ))}
                 {Events_Data.length === 0 && <NoData />}
             </div>

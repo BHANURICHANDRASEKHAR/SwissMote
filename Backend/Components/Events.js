@@ -38,5 +38,38 @@ router.get('/get',async(req,res)=>{
    res.send({msg:'Error getting events',status:false})
   }
 })
+router.post('/update', async (req, res) => {
+  try {
+    const updatedEvent = await Event.findByIdAndUpdate(
+      req.body._id,  
+      req.body,     
+      { new: true }  
+    );
 
+    if (!updatedEvent) {
+      return res.status(404).send({ message: 'Event not found',status: false });
+    }
+    res.status(201).send({msg:'Event updated',status:true});
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+router.post('/attendance',async(req, res) => {
+  const {  event_id,
+    user_id} =req.body
+  try {
+    const updatedEvent = await Event.findByIdAndUpdate(
+      event_id,  
+      { $push: { Attendance: user_id } },     
+      { new: true }  
+    );
+    if (!updatedEvent) {
+      return res.status(404).send({ message: 'Event not found',status: false });
+    }
+    res.status(201).send({msg:'Attendance updated',status:true}); 
+  }
+  catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+})
 export default router;

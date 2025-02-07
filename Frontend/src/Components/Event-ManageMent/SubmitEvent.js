@@ -43,6 +43,7 @@ export default async function Submit(SetLoader, SetEventsData, Data,SetData, use
 }
 
 function validate(data) {
+  console.log("Validating data",data)
   if (
     !data.Event_Name.trim() ||
     !data.Event_Description.trim() ||
@@ -79,4 +80,29 @@ export async function UploadImage(data) {
     console.error("Upload error:", err);
     return null;
   }
+}
+export async  function Update(SetLoader,SetEvents_Data,Events_Data,Data,SetEvent,SetEdit) {
+  console.log("Updating Event",Data)
+ 
+ SetLoader(true)
+ try{
+  const res=await axios.post(`${ApiLink}/event/update`,Data)
+  if(res.data.status)
+  {
+    toast_success("Event updated successfully")
+      const index=Events_Data.findIndex(item=>item._id===Data._id)
+      Events_Data[index]=Data
+      SetEvents_Data([...Events_Data])
+      SetEvent(data)
+      SetEdit(false)
+  }
+  
+ }
+ catch(err){
+  console.error("Error updating",err);
+  toast_fail("Failed todd update event",err.message)
+}
+ finally{
+  SetLoader(false)
+ }
 }

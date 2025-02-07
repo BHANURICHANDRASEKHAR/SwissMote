@@ -9,12 +9,16 @@ export default function Context({children}) {
     const [Events_Data,SetEvents_Data] = useState([])
     const [show,SetShow]=useState(false)
     useEffect(()=>{
-    const token=getToken();
-     if(token){
-      const decoded=jwtDecode(token);
-      setUserId(decoded.id);
-      setUser(token);
+     async function get()
+     {
+      const token=getToken();
+      if(token){
+       const decoded=await jwtDecode(token);
+       setUserId(decoded.id);
+       setUser(token);
+      }
      }
+     get();
   },[flag,show])
     return (
       <UserContext.Provider value={{UserId, user, Events_Data,SetEvents_Data, setUser,show,SetShow,flag,setFlag}}>
